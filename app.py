@@ -7,13 +7,12 @@ import base64
 import qrcode
 import io
 import re
-import os
 
 app = Flask(__name__)
 
 # In-memory block/slot storage
 blocks = {
-    "techpark": {str(i): {"status": "available", "device_info": None, "release_qr": None} for i in range(1, 51)},
+    "techpark": {str(i): {"status": "available", "device_info": None, "release_qr": None} for i in range(1,51)},
     "medical": {str(i): {"status": "available", "device_info": None, "release_qr": None} for i in range(1, 51)},
     "mba": {str(i): {"status": "available", "device_info": None, "release_qr": None} for i in range(1, 51)},
     "java": {str(i): {"status": "available", "device_info": None, "release_qr": None} for i in range(1, 51)},
@@ -29,10 +28,9 @@ AUTH_TOKEN = "6d5deefbdf0e909015826091ce679a1d"
 FROM_PHONE_NUMBER = '+19714174811'
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
-# === Config ===
+# === Utilities ===
 BASE_URL = os.environ.get("BASE_URL", "http://34.201.105.37:5000/")
 
-# === Utilities ===
 
 def normalize_phone(phone):
     digits = re.sub(r'\D', '', phone)
@@ -169,8 +167,10 @@ def verify_otp():
             blocks[block][slot]["device_info"] = phone_number
             blocks[block][slot]["release_qr"] = generate_qr(release_url_with_device)
 
-            # Save the QR code
+            # Generate the release QR code
             release_qr_image = generate_qr(release_url_with_device)
+
+            # Create a downloadable file for the release QR
             qr_file_name = f"release_qr_{block}_{slot}.png"
             with open(f"static/{qr_file_name}", "wb") as qr_file:
                 qr_file.write(base64.b64decode(release_qr_image))
@@ -189,12 +189,13 @@ def verify_otp():
                 "message": f"Slot {slot} in {block} booked successfully!",
                 "release_qr": blocks[block][slot]["release_qr"],
                 "release_url": release_url_simple,
-                "qr_download_link": f"/static/{qr_file_name}"
+                "qr_download_link": f"/static/{qr_file_name}"  # Link to download the QR code
             }), 200
 
         return jsonify({"success": False, "message": "Slot already occupied"}), 403
 
     return jsonify({"success": False, "message": "Invalid OTP"}), 400
+
 
 @app.route("/book/<block>/<slot>/<encoded_device>")
 def book_slot(block, slot, encoded_device):
@@ -335,5 +336,22 @@ def reset_all():
             blocks[block][slot] = {"status": "available", "device_info": None, "release_qr": None}
     return jsonify({"status": "reset"})
 
+@app.route("/release")
+def handle_release_query():
+    block = request.args.get("block")
+    slot = request.args.get("slot")
+    encoded_device = request.args.get("device")
+
+    if not block or not slot or not encoded_device:
+        return "Missing required parameters", 400
+
+    return render_template(
+        "index.html",
+        preselected_block=block,
+        preselected_slot=slot,
+        encoded_device=encoded_device,
+        release_mode=True
+    )
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000, debug=True)
+    app.run(debug=True)
