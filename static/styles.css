@@ -1,0 +1,318 @@
+body {
+    font-family: 'Segoe UI', Arial, sans-serif;
+    text-align: center;
+    background: #fff;
+    color: #333333;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+h1 {
+    margin-bottom: 24px;
+    color: #000000;
+    font-size: 2.5rem;
+    letter-spacing: 1px;
+    font-weight: 900;
+}
+
+#block-menu {
+    margin-bottom: 24px;
+    background: #F2F2F2;
+    display: inline-block;
+    padding: 16px 32px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1.5px solid #000000;
+}
+
+label {
+    font-size: 1.1rem;
+    color: #000000;
+    font-weight: 700;
+}
+
+select {
+    background: #fff;
+    border: 1.5px solid #333333;
+    border-radius: 6px;
+    padding: 8px 18px;
+    margin-left: 12px;
+    color: #333333;
+    font-weight: 600;
+    transition: border 0.2s;
+}
+
+select:focus {
+    border-color: #FFD700;
+    outline: none;
+}
+
+#parking-slots {
+    display: grid;
+    grid-template-columns: repeat(10, auto);
+    gap: 16px;
+    justify-content: center;
+    margin-top: 24px;
+}
+
+.slot {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 2px solid #000000;
+    font-weight: bold;
+    border-radius: 16px;
+    transition: background 0.3s, transform 0.2s, box-shadow 0.3s;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    font-size: 1.2rem;
+    background: #fff;
+    color: #000000;
+}
+
+.available {
+    background: #fff;
+    color: #000000;
+}
+
+.occupied {
+    background: #333333;
+    color: #fff;
+    border-color: #333333;
+}
+
+.slot:hover {
+    background: #F2F2F2;
+    transform: scale(1.07);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.12);
+}
+
+.selected {
+    outline: 3px solid #FFD700; /* Gold accent */
+    box-shadow: 0 0 10px 2px #FFD70055;
+}
+
+#qr-code-container,
+#release-section,
+#otp-container {
+    margin-top: 32px;
+    background: #F2F2F2;
+    padding: 20px 0;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid #000000;
+}
+
+#qr-code, #release-qr {
+    width: 160px;
+    height: 160px;
+    margin-top: 18px;
+    border: 2px solid #000000;
+    border-radius: 10px;
+    background: #fff;
+}
+
+#block-name {
+    color: #000000;
+    font-size: 1.1rem;
+    margin-top: 10px;
+    display: none;
+}
+
+#map-button, #cookie-popup button {
+    margin-top: 12px;
+    display: inline-block;
+    background: #FFD700;
+    color: #000000;
+    padding: 10px 22px;
+    border-radius: 30px;
+    font-weight: 700;
+    text-decoration: none;
+    border: none;
+    font-size: 1.05rem;
+    transition: background 0.2s;
+    cursor: pointer;
+    box-shadow: 0 2px 8px #F2F2F2;
+}
+
+#map-button:hover, #cookie-popup button:hover {
+    background: #333333;
+    color: #FFD700;
+}
+
+#release-link {
+    color: #FFD700;
+    text-decoration: underline;
+    font-weight: 600;
+}
+
+/* GENERAL input styling */
+input {
+    padding: 12px;
+    margin: 10px;
+    border-radius: 8px;
+    border: 1.5px solid #333333;
+    font-size: 1.1rem;
+    width: 240px;
+    color: #333333;
+    background: #fff;
+    transition: border 0.2s;
+}
+
+input:focus {
+    border-color: #FFD700;
+    outline: none;
+}
+
+button {
+    padding: 12px 28px;
+    background: #FFD700;
+    color: #000000;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    font-size: 1.1rem;
+    font-weight: 700;
+    transition: background 0.3s, color 0.2s, transform 0.2s;
+    margin: 6px 0;
+}
+
+button:hover {
+    background: #333333;
+    color: #FFD700;
+    transform: scale(1.05);
+}
+
+#otp-message {
+    margin-top: 20px;
+    font-size: 1.1rem;
+    color: #FFD700;
+}
+
+/* Cookie Popup */
+#cookie-popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    color: #000000;
+    padding: 28px;
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.10);
+    z-index: 1000;
+}
+
+#cookie-popup button {
+    background: #FFD700;
+    color: #000000;
+    border: none;
+    padding: 10px 24px;
+    border-radius: 30px;
+    font-size: 1rem;
+    margin-top: 10px;
+    transition: background 0.2s;
+}
+
+#cookie-popup button:hover {
+    background: #333333;
+    color: #FFD700;
+}
+
+/* NEW: Specific OTP / Phone Verification Section clean styling */
+#otp-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 32px;
+    background: #F2F2F2;
+    padding: 30px 20px;
+    border-radius: 14px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+    border: 1px solid #000000;
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#otp-container h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    margin-bottom: 20px;
+    color: #000;
+}
+
+#otp-phone-input,
+#otp-verification {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#otp-container input {
+    width: 220px;
+    max-width: 90%;
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 1rem;
+    border: 1.5px solid #333333;
+    border-radius: 8px;
+    background: #fff;
+    color: #333333;
+    transition: border 0.2s;
+}
+
+#otp-container input:focus {
+    border-color: #FFD700;
+    outline: none;
+}
+
+#otp-container button {
+    width: auto;
+    padding: 10px 20px;
+    margin: 8px 4px;
+    background: #FFD700;
+    color: #000000;
+    border: none;
+    border-radius: 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+}
+
+#otp-container button:hover {
+    background: #333333;
+    color: #FFD700;
+    transform: scale(1.05);
+}
+
+#otp-phone-hint {
+    margin: 10px 0;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #000;
+}
+
+#otp-message {
+    margin-top: 16px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #FFD700;
+}
+#logo-container {
+    position: absolute;
+    top: 20px;  /* Adjust this value for desired space from the top */
+    right: 20px;  /* Adjust this value for desired space from the right */
+    z-index: 10;  /* Ensures the logo stays on top */
+}
+
+#logo {
+    width: 100px;  /* Adjust size as needed */
+    height: auto;
+}

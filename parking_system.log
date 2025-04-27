@@ -1,0 +1,30 @@
+2025-03-31 00:58:41,266 - INFO - [31m[1mWARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.[0m
+ * Running on http://127.0.0.1:5000
+2025-03-31 00:58:41,266 - INFO - [33mPress CTRL+C to quit[0m
+2025-03-31 00:58:41,269 - INFO -  * Restarting with stat
+2025-03-31 00:58:41,767 - WARNING -  * Debugger is active!
+2025-03-31 00:58:41,773 - INFO -  * Debugger PIN: 138-383-286
+2025-03-31 00:58:49,543 - INFO - 127.0.0.1 - - [31/Mar/2025 00:58:49] "GET / HTTP/1.1" 200 -
+2025-03-31 00:58:49,619 - INFO - 127.0.0.1 - - [31/Mar/2025 00:58:49] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-03-31 00:58:49,621 - INFO - 127.0.0.1 - - [31/Mar/2025 00:58:49] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 00:58:49,625 - INFO - 127.0.0.1 - - [31/Mar/2025 00:58:49] "GET /status HTTP/1.1" 200 -
+2025-03-31 00:58:50,245 - INFO - 127.0.0.1 - - [31/Mar/2025 00:58:50] "GET / HTTP/1.1" 200 -
+2025-03-31 00:58:50,259 - INFO - 127.0.0.1 - - [31/Mar/2025 00:58:50] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 00:58:50,259 - INFO - 127.0.0.1 - - [31/Mar/2025 00:58:50] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-03-31 00:58:50,266 - INFO - 127.0.0.1 - - [31/Mar/2025 00:58:50] "GET /status HTTP/1.1" 200 -
+2025-03-31 00:58:51,424 - INFO - Slot 2 booked successfully by device: {}
+2025-03-31 00:58:51,424 - INFO - 127.0.0.1 - - [31/Mar/2025 00:58:51] "POST /generate_qr/2 HTTP/1.1" 200 -
+2025-03-31 00:59:05,335 - INFO - Slot 2 confirmed as booked
+2025-03-31 00:59:05,336 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:05] "GET /book/2/gAAAAABn6ZtzGbLFMY06Ci1Z2T_kXnkZv-_BVsF8-DzrpjiWNE2y-lboM84Ero5imKIqkn1SUjr_yC9O8NyKkQhdjTYF49gcbw==/1743362931?sig=97f41400d0165317a0dcc7a7de7e5a38356143a0433fefc1ceb59fe8fd2a5d09 HTTP/1.1" 200 -
+2025-03-31 00:59:09,318 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:09] "GET / HTTP/1.1" 200 -
+2025-03-31 00:59:09,333 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:09] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-03-31 00:59:09,333 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:09] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 00:59:09,342 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:09] "GET /status HTTP/1.1" 200 -
+2025-03-31 00:59:10,415 - INFO - Slot 3 booked successfully by device: {}
+2025-03-31 00:59:10,416 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:10] "POST /generate_qr/3 HTTP/1.1" 200 -
+2025-03-31 00:59:11,581 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:11] "GET / HTTP/1.1" 200 -
+2025-03-31 00:59:11,595 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:11] "[36mGET /static/styles.css HTTP/1.1[0m" 304 -
+2025-03-31 00:59:11,597 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:11] "[36mGET /static/script.js HTTP/1.1[0m" 304 -
+2025-03-31 00:59:11,603 - INFO - 127.0.0.1 - - [31/Mar/2025 00:59:11] "GET /status HTTP/1.1" 200 -
+2025-03-31 01:00:09,092 - INFO -  * Detected change in 'C:\\Users\\ravin\\Downloads\\FINAL PROJECT MOOC1\\FINAL PROJECT MOOC\\ParkingSystem\\app.py', reloading
+2025-03-31 01:00:09,161 - INFO -  * Restarting with stat

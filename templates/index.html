@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Smart Parking System</title>
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+
+  <h1>Smart Parking Slots</h1>
+
+  <!-- Block menu, visible only if we're on the home page -->
+  <div id="block-menu">
+    <label for="block-select">Select Block:</label>
+    <select id="block-select">
+      <option value="techpark">Techpark Block</option>
+      <option value="medical">Medical Block</option>
+      <option value="mba">MBA Block</option>
+      <option value="java">Java Block</option>
+      <option value="fablab">FabLab</option>
+      <option value="dental">Dental Block</option>
+    </select>
+  </div>
+
+  <!-- Parking slots section -->
+  <div id="parking-slots" class="slot-grid"></div>
+
+  <!-- Slot Status Legend -->
+  <div id="legend" style="margin: 30px auto 0; max-width: 350px; display: flex; justify-content: center; gap: 24px;">
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <span style="display: inline-block; width: 22px; height: 22px; background: #fff; border:2px solid #000; border-radius: 5px;"></span>
+      <span style="font-size: 1rem;">Available</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <span style="display: inline-block; width: 22px; height: 22px; background: #333; border:2px solid #333; border-radius: 5px;"></span>
+      <span style="font-size: 1rem;">Occupied</span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 6px;">
+      <span style="display: inline-block; width: 22px; height: 22px; background: #FFD70044; border:3px solid #FFD700; border-radius: 5px;"></span>
+      <span style="font-size: 1rem;">Selected</span>
+    </div>
+  </div>
+
+  <!-- Phone Verification Section (Visible only on booking page) -->
+  <div id="otp-container" style="display: none;">
+    <h2 id="otp-title">Phone Verification</h2>
+
+    <div id="otp-phone-input">
+      <input type="text" id="phone-number" placeholder="Enter phone number" />
+      <button id="send-otp-button">Send OTP</button>
+    </div>
+
+    <div id="otp-phone-hint" style="display: none;">
+      Sending OTP to: <span id="masked-number"></span>
+    </div>
+
+    <div id="otp-verification" style="display: none;">
+      <input type="text" id="otp" placeholder="Enter OTP" />
+      <button id="verify-otp-button">Verify OTP</button>
+      <button id="resend-otp-button" style="display: none;">Resend OTP</button> 
+      <!-- OTP message in black color -->
+      <p id="otp-message" style="color: #000000; margin-top: 20px; font-size: 1.1rem;">OTP sent to your number.</p>
+    </div>
+  </div>
+
+  <!-- QR Code section for booking page -->
+  <div id="qr-code-container" style="display: none;">
+    <p id="qr-message"></p>
+    <img id="qr-code" src="" alt="QR Code" />
+    <p id="block-name" style="font-weight: bold; margin-top: 8px;"></p>
+    <a id="map-button" href="#" target="_blank" style="display: none;">Navigate to Parking</a>
+  </div>
+
+  <p id="status-text"></p>
+
+  <script src="/static/script.js"></script>
+
+  <script>
+    // Check if the current URL is for the booking page
+    const url = window.location.pathname;
+
+    if (url.includes("/book/")) {
+      // If it's the booking page:
+      // Hide the block selection dropdown
+      document.getElementById("block-menu").style.display = "none";
+      // Show the OTP section and QR Code section
+      document.getElementById("otp-container").style.display = "block";
+      document.getElementById("qr-code-container").style.display = "block";
+
+      // Optional: You can set the QR code here dynamically if needed
+      document.getElementById("qr-message").innerText = "Scan this QR code to release your slot later!";
+      document.getElementById("qr-code").src = "path_to_your_qr_code_image";  // Add your QR code image source
+
+      // When OTP input field is shown, show Resend OTP button
+      document.getElementById("otp-verification").style.display = "block";
+      document.getElementById("resend-otp-button").style.display = "inline-block"; // Make the Resend OTP button visible
+    } else {
+      // If it's the home page:
+      // Show the block selection dropdown
+      document.getElementById("block-menu").style.display = "block";
+      // Hide the OTP and QR code section
+      document.getElementById("otp-container").style.display = "none";
+      document.getElementById("qr-code-container").style.display = "none";
+    }
+
+    // OTP send button functionality
+    document.getElementById('send-otp-button').addEventListener('click', function() {
+      // Assuming OTP is sent successfully, update the message
+      document.getElementById('otp-message').style.display = 'block';
+      document.getElementById('otp-message').innerText = 'OTP sent to your number.';
+    });
+
+    // Resend OTP button functionality
+    document.getElementById('resend-otp-button').addEventListener('click', function() {
+      // Update the message to indicate OTP resend
+      document.getElementById('otp-message').innerText = 'OTP resent to your number.';
+    });
+  </script>
+
+</body>
+</html>

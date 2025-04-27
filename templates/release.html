@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Release Slot</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      padding: 2rem;
+      background: #F2F2F2; /* Light gray background */
+      color: #333333; /* Dark text color */
+    }
+    h2 {
+      color: #000000; /* Black color for heading */
+      font-size: 2rem;
+      font-weight: 900;
+    }
+    form {
+      margin-top: 1rem;
+    }
+    label {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: #000000; /* Black label color */
+    }
+    input {
+      padding: 0.5rem;
+      font-size: 1rem;
+      width: 200px;
+      border: 1.5px solid #333333; /* Dark border */
+      border-radius: 6px;
+      color: #333333; /* Dark text color */
+      background: #ffffff; /* White background */
+      transition: border 0.2s;
+    }
+    input:focus {
+      border-color: #FFD700; /* Golden yellow border on focus */
+      outline: none;
+    }
+    button {
+      padding: 0.5rem 1rem;
+      margin-left: 1rem;
+      font-size: 1rem;
+      background-color: #FFD700; /* Golden yellow background */
+      color: #000000; /* Black text color */
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: background 0.3s, transform 0.2s;
+    }
+    button:hover {
+      background: #333333; /* Dark background on hover */
+      color: #FFD700; /* Golden yellow text on hover */
+      transform: scale(1.05);
+    }
+    #result {
+      margin-top: 1rem;
+      font-weight: bold;
+      font-size: 1.1rem;
+    }
+    #result.success {
+      color: #4CAF50; /* Green color for success */
+    }
+    #result.error {
+      color: #FF0000; /* Red color for error */
+    }
+  </style>
+</head>
+<body>
+  <h2>Release Slot</h2>
+  <p>Slot: {{ slot }}, Block: {{ block }}</p>
+
+  <form id="otpForm">
+    <label for="otp">Enter OTP:</label>
+    <input type="text" id="otp" placeholder="Enter OTP" required />
+    <button type="submit">Submit OTP</button>
+  </form>
+
+  <div id="result"></div>
+
+  <script>
+    const form = document.getElementById('otpForm');
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const otp = document.getElementById('otp').value;
+
+      const response = await fetch('/verify_release_otp', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          phone_number: atob("{{ encoded_device }}"),
+          otp: otp
+        })
+      });
+
+      const result = await response.json();
+      const resultElement = document.getElementById('result');
+      resultElement.textContent = result.message;
+
+      if (result.success) {
+        resultElement.classList.add('success');
+        resultElement.classList.remove('error');
+      } else {
+        resultElement.classList.add('error');
+        resultElement.classList.remove('success');
+      }
+    });
+  </script>
+</body>
+</html>
