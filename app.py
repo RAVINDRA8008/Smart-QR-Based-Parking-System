@@ -24,9 +24,9 @@ blocks = {
 otps = {}
 
 # Twilio config
-ACCOUNT_SID = "our_real_twilio_account_sid"
-AUTH_TOKEN = "our_real_twilio_account_sid"
-FROM_PHONE_NUMBER = '+our_real_twilio_account_sid'
+ACCOUNT_SID = "AC5bc378155c279cc703a2214cc4d63770"
+AUTH_TOKEN = "6d5deefbdf0e909015826091ce679a1d"
+FROM_PHONE_NUMBER = '+19714174811'
 client = Client(ACCOUNT_SID, AUTH_TOKEN)
 
 # === Config ===
